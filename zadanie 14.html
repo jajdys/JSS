@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zadanie 14</title>
+</head>
+    <body>
+        Podaj pierwszą liczbe <input type="number" id="liczba"><br><br>
+        <button onclick="pierwsza()">Oblicz</button>
+        <p id="wynik"></p>
+
+        <script>
+        function pierwsza(){
+            let n = parseInt(liczba.value);
+            let i =2;
+            pom = Math.sqrt(n);
+            
+            while(i <= pom){
+                if(n%i==0){
+                    wynik.innerHTML = "liczba złożona";
+                    break;
+                }
+                i++
+
+                wynik.innerHTML = "liczba pierwsza";
+            }
+           // wynik.innerHTML = a;
+           //zadanie na liczbe pierwsza
+        } 
+
+        </script>
+    
+    </body>
+</html>

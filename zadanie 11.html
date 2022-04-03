@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>zadanie 11</title>
+    <script>
+        const silnia=()=> {
+            let a = parseFloat(liczba.value);
+            let sil = 1;
+            for(let i=1; i<=a; i++){
+                sil*=i;
+            }
+            wynik.innerHTML = ("Silnia z "+a+" = "+sil);
+        }
+    </script>
+    
+</head>
+<body>
+    Podaj liczbę <input type="number" id="liczba">
+    <input type="button" value="Oblicz" onclick="silnia()"><br>
+    <p id="wynik"></p>
+
+</body>
+</html>

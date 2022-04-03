@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>zadanie 17</title>
+</head>
+<body>
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 185px;">
+        <legend>ilość znaków i wyrazów w tekście</legend>
+        <textarea id="pole" onkeyup="licz()" rows="25" cols="50"></textarea>
+        <p id="wynik1"></p>
+        <p id="wynik2"></p>
+    </fieldset>
+    <script>
+        const licz=()=>{
+            const tekst = pole.value;
+            let znaki = tekst.length;
+            wynik1.innerHTML=`ilość znaków: ${znaki}`;
+
+            let start=0;
+            let index=0;
+            let wyraz=0;
+
+
+            while(index != -1){
+                index=tekst.indexOf(" ", start)
+
+                if(index != -1){
+                    start=index+1;
+                }
+                wyraz++;
+            }
+            wynik2.innerHTML = `ilość wyrazów ${wyraz}`;
+        }
+    </script>
+</body>
+</html>

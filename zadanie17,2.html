@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <script>
+        const zamien=()=>{
+            const stri = pole.value;
+            const slowo = prompt("Jakie słówko chcesz znaleźć i zamienić?");
+            const na = prompt("Na jakie słówko chcesz go zaminić?");
+            let wynik = stri.replaceAll(slowo, na);
+            pole.value = wynik;
+        }
+        const wielkie=()=>{
+            const stri = pole.value;
+            let wynik = stri.toUpperCase();
+            pole.value = wynik;
+        }
+        const male=()=>{
+            const stri = pole.value;
+            let wynik = stri.toLowerCase();
+            pole.value = wynik;
+        }
+    </script>
+    <title>Zadanie 17</title>
+</head>
+<body>
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 185px;">
+        <legend>ilość znaków i wyrazów w tekście</legend>
+        <input type="button" value="Znajdź i zamień" onclick="zamien()">&nbsp;&nbsp;<input type="button" value="Wielkie litery" onclick="wielkie()">&nbsp;&nbsp;<input type="button" value="Małe litery" onclick="male()"><br><br>
+        <textarea rows="25" cols="50" id="pole"></textarea>
+    </fieldset>
+</body>
+</html>

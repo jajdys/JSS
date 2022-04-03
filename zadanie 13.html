@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zadanie 13</title>
+</head>
+    <body>
+        Podaj liczbe <input type="number" id="pole">
+        <button onclick="podzielna()">Oblicz</button>
+        <p id="wynik"></p>
+
+        <script>
+        function podzielna(){
+            let i =1;
+            let n = parseInt(pole.value);
+             temp="";
+            
+            while(i<=n){
+                if(n%i==0){
+                     temp += i +", ";
+                }
+                i++;  
+            }
+            wynik.innerHTML = temp;  
+        }    
+        </script>
+    
+    </body>
+</html>

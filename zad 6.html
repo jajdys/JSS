@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        fieldset{text-align: center; width: 500px; margin-top: 70px; margin-left: auto; margin-right: auto};
+    </style>
+
+</head>
+    <body>
+        <fieldset>
+            Podaj hasło: <input type="text" id="password" onkeyup="haslo()">
+            <p id="wynik"></p>
+        </fieldset>
+        <script>
+            const haslo =()=>{
+                const haslo1 = password.value;
+                const Re = /[0-9]/;
+        
+                if(haslo1.length>=7 && Re.test(haslo1)){
+                    wynik.innerHTML = "DOBRE!";
+                    wynik.style.color = "green";
+                }
+                else if(haslo1.length>=4 && haslo1.length<=6 && Re.test(haslo1)){
+                    wynik.innerHTML = "ŚREDNIE!";
+                    wynik.style.color = "blue";
+                }
+                else if(haslo1 == "" || haslo1 == " "){
+                    wynik.innerHTML = "WPISZ HASŁO!";
+                    wynik.style.color = "red";
+                }
+                else{
+                    wynik.innerHTML = "SŁABE!";
+                    wynik.style.color = "yellow";
+                }
+            }
+        </script>
+    </body>
+</html>

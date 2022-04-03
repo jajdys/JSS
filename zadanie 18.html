@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zadanie 18</title>
+</head>
+<body>
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 20px;">
+        <legend>Przedział losowania</legend>
+
+        a = <input id="poleA"><br><br>
+        b = <input id="poleB"><br><br>
+        ilość elementów tablicy <input id="poleN"><br><br>
+        <input type="button" value="generuj" onclick="tablica()">
+        <input type="button" value="min/max" onclick="minmax()"><br><br>
+        <input type="button" value="Srednia" onclick="srednia()">
+        <input type="button" value="Sortuj" onclick="sortuj()">
+        <input type="button" value="Potęga" onclick="potega()">
+
+        <p id="wynik"></p>
+        <p id="minimax"></p>
+        <p id="Srednia_wynik"></p>
+
+    </fieldset>
+
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Wyszukiwarka</legend>
+
+        Podaj liczbe: <input id="wyszukaj"><br><br>
+        <input type="button" value="szukaj" onclick="wyszukiwarka()"><br><br>
+        <p id="wynik2">Licznik:</p>
+
+    </fieldset>   
+    
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Dodawanie</legend>
+
+        Podaj liczbę <input type="number" id="poleC"><br><br>
+        <input type="button" value="początek" onclick="dodajPoczatek()">
+        <input type="button" value="koniec" onclick="dodajKoniec()">
+        <input type="button" value="gdziekolwiek" onclick="dodajGdziekolwiek()">
+
+    </fieldset>
+
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Usuwanie</legend>
+
+        <input type="button" value="początek" onclick="usunPoczatek()">
+        <input type="button" value="koniec" onclick="usunKoniec()">  
+        <input type="button" value="gdziekolwiek" onclick="usunGdziekolwiek()">
+
+    </fieldset>
+    
+    
+
+    <script>
+        let T=[];
+        const tablica=()=>{ //tablica
+            const a = parseInt(poleA.value);
+            const b = parseInt(poleB.value);
+            const n = parseInt(poleN.value);
+
+            for(let i=0; i<n; i++){
+                T[i]=Math.floor(Math.random()*(b-a))+a
+            }
+            wyswietl();
+        }
+        const wyswietl=()=>{ //wyswietlanie
+            const str = T.join(", ");
+            wynik.innerHTML = str;
+        }
+
+        const sortuj = () => { //sortowanie wynikow w tablicy
+            T.sort((a, b) => a - b);
+            wyswietl();
+        }
+
+        const minmax =()=>{ //minimalna maksymalna liczba
+            let min = T[0];
+            let max = T[0];
+
+            for(let pom of T){
+                if(pom>max){
+                    max = pom;
+                }
+                else if(pom<max){
+                    min = pom;
+                }
+            }
+            let uwu = "Min: " + min + "&nbsp&nbsp&nbsp";
+            let owo = "Max: " + max;
+            minimax.innerHTML = uwu + owo;
+        }
+        
+        const wyszukiwarka =()=>{ //szukajka
+        
+        const liczba = parseInt(wyszukaj.value); 
+        let licznik = 0;
+        let wynik = " ";
+        
+        for(let x of T){
+            if(x==liczba){
+                licznik++
+            }
+        }
+        if(licznik==0){
+                wynik = "Nie ma takiej liczby";
+            }
+        else if(licznik !=0){
+                wynik = licznik;
+
+                wynik2.innerHTML = "Licznik: " + wynik;
+            }
+        }
+
+        const potega = () => { //potegowanie liczb w tablicy
+            let potega = tablica.map(value => value ** 2);
+            tablica = potega;
+            wyswietl();
+        }
+
+        const srednia = () => { //usrednia wynik w
+            let suma = 0;
+            for (let x of T) {
+                suma += x;
+            }
+            const ile = T.length;
+            let Wynik_srednia = suma / ile;
+            Srednia_wynik.textContent = `Srednia: ${Wynik_srednia}`;
+        }
+
+        const dodajPoczatek = () => { //dodawanie na poczatku tablicy
+            const x = parseInt(poleC.value);
+            T.unshift(x);
+            wyswietl();
+        }
+
+        const dodajKoniec = () => { //dodawanie na koncu tablicy
+            const x = parseInt(poleC.value);
+            T.push(x);
+            wyswietl();
+        }
+
+        const dodajGdziekolwiek = () => { //dodawanie w przypadkowym miejscu w tabicy
+            const x = parseInt(poleC.value);
+            T.splice(T, 0, x);
+            wyswietl();
+        }
+
+        const usunGdziekolwiek = () => { //usuwanie z przypadkowego miejsca w tablicy
+            const index = parseInt(prompt("Podaj którą liczbe chcesz usunąć"));
+            T.splice(T, 1);
+            wyswietl();
+        }
+
+        const usunPoczatek = () => { //usuwanie z początku tablicy
+            T.shift();
+            wyswietl();
+        }
+
+        const usunKoniec = () => { //usuwanie z końca tablicy
+            T.pop();
+            wyswietl();
+        }
+        
+        
+
+    </script>
+</body>
+</html>

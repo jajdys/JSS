@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zadanie 16</title>
+</head>
+<body>
+    <button onclick="piramida()">start</button>
+    <p id="wynik"></p>
+    <script>
+        function piramida(){
+            let temp = "";
+            for(let i=0; i<15; i++){
+                for(let j=i; j>0; j--){
+                    temp +="*";
+                }
+                temp += "<br>";
+            }
+            wynik.innerHTML = temp;
+        }
+    </script>    
+</body>
+</html>

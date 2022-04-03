@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zadanie 4</title>
+</head>
+<body onload="start()"  style="background-color: black;">
+    <div id="kula" style="width: 50px; height: 50px; background-color: red; border: 1px black solid; border-radius: 50%; position: absolute; left: 0; top: 0;"></div>
+    <script>
+        let step_x = 12;
+        let step_y = 5;
+        let time_id = null;
+
+        const move =()=>{
+            let x = parseInt(kula.style.left);
+            let y = parseInt(kula.style.top);
+
+            x += step_x;
+            y += step_y;
+
+            kula.style.left = x + "px";
+            kula.style.top = y + "px";
+
+            if(x>400){
+                step_x= -(step_x);
+            }
+            if(x<1){
+                step_x= -(step_x);
+            }
+            
+            if(y>400){
+                step_y = -(step_y);
+            }
+            if(y<1){
+                step_y = -(step_y);
+            }
+
+        }
+        const start=()=>{
+            if(time_id==null){
+                time_id = setInterval("move();", 50);
+            }
+            else{
+                clearInterval(time_id);
+                time_id = null;
+            }
+        }
+    </script>
+</body>
+</html>

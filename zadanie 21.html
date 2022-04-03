@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Zadanie 21</title>
+    
+    <style>
+        table{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .niebieski{
+            background-color: blue;
+        }
+        .zielony{
+            background-color: green;
+        }
+        .czerwony{
+            background-color: red;
+        }
+    </style>
+    
+    <script>
+        let T=[];
+        let row;
+        let col;
+        const gen=()=>{
+            wynik.innerHTML = "";
+            let temp = "";
+            row = parseInt(nn.value);
+            col = parseInt(mm.value);
+            const od = parseInt(odd.value);
+            const doo = parseInt(ddo.value);
+            for(let i=0; i<row; i++){
+                T[i] = [];
+            }
+            for(let i=0; i<row; i++){
+                for(let j=0; j<col; j++){
+                    T[i][j] = Math.floor(Math.random()*(doo-od+1))+od;
+                }
+            }
+            temp+="<table>";
+            for(let i=0; i<row; i++){
+                temp += "<tr>"; 
+                for(let j=0; j<col; j++){
+                    temp += `<td>${T[i][j]}</td>`;
+                }
+                temp += "</tr>";
+            }
+            temp += "</table>"
+            wynik.innerHTML = temp;
+        }
+        const prz=()=>{
+            let temp = "";
+            temp+="<table>";
+
+            for(let i=0; i<row; i++){
+                temp += "<tr>"; 
+                for(let j=0; j<col; j++){
+                    if(i==j){
+                    temp += `<td class="niebieski">${T[i][j]}</td>`;
+                    }
+                    else{
+                        temp += `<td>${T[i][j]}</td>`;
+                    }
+                }
+                temp += "</tr>";
+            }
+            temp += "</table>"
+            wynik.innerHTML = temp;
+        }
+        const par=()=>{
+            let temp = "";
+            temp+="<table>";
+
+            for(let i=0; i<row; i++){
+                temp += "<tr>"; 
+                for(let j=0; j<col; j++){
+                    if(T[i][j]%2 == 0){
+                    temp += `<td class="zielony">${T[i][j]}</td>`;
+                    }
+                    else{
+                        temp += `<td>${T[i][j]}</td>`;
+                    }
+                }
+                temp += "</tr>";
+            }
+            temp += "</table>"
+            wynik.innerHTML = temp;
+        }
+        const znaj=()=>{
+            let temp = "";
+            let liczba = parseInt(liczba_s.value);
+            temp+="<table>";
+
+            for(let i=0; i<row; i++){
+                temp += "<tr>"; 
+                for(let j=0; j<col; j++){
+                    if(T[i][j] == liczba){
+                    temp += `<td class="czerwony">${T[i][j]}</td>`;
+                    }
+                    else{
+                        temp += `<td>${T[i][j]}</td>`;
+                    }
+                }
+                temp += "</tr>";
+            }
+            temp += "</table>"
+            wynik.innerHTML = temp;
+        }
+    </script>
+    
+</head>
+<body>
+    <!--<h1 style="text-align: center;">Tablica dwuwymiarowa</h1>-->
+    <fieldset style="text-align:center; width:500px;  margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Przedział losowania</legend>
+        Min:<br><input type="number" id="odd"><br>
+        Max:<br><input type="number" id="ddo"><br><br>
+        <input type="button" value="Wygeneruj" onclick="gen()">
+    </fieldset><br>
+
+    <fieldset style="text-align:center; width:500px;  margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Wymiary tablicy</legend>
+        wysokosc:<br><input type="number" id="nn"><br>
+        szerokosc:<br><input type="number" id="mm"><br><br>
+        <input type="button" value="Zaznacz przekątną" onclick="prz()"><br><br>
+        <input type="button" value="Zaznacz parzyste" onclick="par()"><br>
+    </fieldset><br>
+
+    <fieldset style="text-align:center; width:500px;  margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Przeszukiwanie tablicy</legend>
+        Podaj liczbę:<br><input type="number" id="liczba_s"><br><br>
+        <input type="button" value="Znajdz twoją liczbę" onclick="znaj()"><br>
+    </fieldset>
+
+    <div style="text-align: center;"><br>
+    <p id="wynik"></p>
+    </div>
+</body>
+</html>

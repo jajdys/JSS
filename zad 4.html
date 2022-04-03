@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+    <style>
+        h2 {position: absolute; top: 50%; left: 50%;}
+        img {opacity: 0.5; max-height: 80%; max-height: 80%;}
+        
+    </style>
+    <body onload="sliderChange()">
+        <p id="text"></p>
+        <img src="wallpaper_1.png" style="height:auto;" id="image" alt="obraz">
+        <script>
+                const slideImg = ["wallpaper_1.png", "wallpaper_2.png", "wallpaper_3.png", "wallpaper_4.png", "wallpaper_5.png"];
+                const slideTxt = ["1 tekst", "2 tekst", "3 tekst", "4 tekst", "5 tekst"];
+
+                let index = 0;
+                const sliderChange=()=>{
+
+                    if(index >= slideImg.length -1){
+                        index = 0;
+                    }
+                    else{
+                        index++
+                    }
+                    image.src = slideImg[index];
+                    text.innerHTML = slideTxt[index];
+                }
+            setInterval(sliderChange, 3000);
+        </script>
+    </body>
+</html>

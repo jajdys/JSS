@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Zadanie 20</title>
+</head>
+
+
+
+<body>
+
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 100px;">
+        <legend>Lotto</legend>
+        
+        <input type="button" value="Wylosuj" onclick="losuj()"><br>
+        <p id="wynik"></p>
+    </fieldset>
+
+    <script>
+
+    const losuj=()=>{
+        wynik.innerHTML=" ";
+        
+        let Lotto = [];
+        
+        for(let i=1; i<=6; i++){
+            const los = Math.floor(Math.random()*49)+1;
+            if(Lotto.indexOf(los) == -1){
+                Lotto.push(los);
+            }
+            else{
+                i--;
+            }
+        }
+        Lotto.sort((a,b) => a-b);
+        for(let x of Lotto){
+            wynik.innerHTML += `<img src="lotto/p${x}.png" width="80" height="80">`;
+        }
+    }
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zadanie 16.2</title>
+</head>
+<body>
+    <style>
+        th{
+            background: #000;
+            color: #fff;
+        }
+        table, td, th{
+            border: 1px solid #000; 
+        }
+    </style>
+
+    <button onclick="tabliczka()">start</button>
+    <p id="wynik"></p>
+    <script>
+        function tabliczka(){
+            let temp = "<table>";
+            temp += "<tr>";
+            temp += "<th></th>";
+
+            for(let i=1; i<=10; i++){
+                temp += `<th>${i}</th>`;
+            }
+
+            for(let i=1; i<=10; i++){
+                temp += "</tr>";
+                temp += `<th>${i}</th>`;
+
+                for(let j=1; j<=10; j++){
+                    temp += `<td>${i*j}</td>`;
+                }
+            }
+            temp += "<table>";
+            wynik.innerHTML = temp;
+        }
+    </script>    
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>zadanie 12</title>
+</head>
+    <body>
+        Podaj pierwszą liczbe <input type="number" id="liczba1"><br><br>
+        Podaj drugą liczbe <input type="number" id="liczba2"><br><br>
+        <button onclick="nwd()">Oblicz</button>
+        <p id="wynik"></p>
+
+        <script>
+        function nwd(){
+            let a = parseInt(liczba1.value);
+            let b = parseInt(liczba2.value);
+
+            while(a!=b){
+                if(a>b)
+                    a -= b;    
+                else
+                    b -= a;
+            }
+            wynik.innerHTML = "największy wspólny dzielnik: " + a;
+            //zadanie na nwd
+        } 
+
+        </script>
+    
+    </body>
+</html>

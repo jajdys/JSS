@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Formularz</title>
+</head>
+<body>
+    <style>
+        fieldset{width: 500px; margin-left: auto; margin-right: auto;}
+        #tekst{float: left; width: 100px;}
+        #pola{float: left; width: 100px;}
+        button{margin: 0 auto; display: block; width: 100px;}
+    </style>
+    <fieldset>
+        Prosze podac swoje dane:<br>
+        (Wszystkie pola maja byc wypelnione)<br><br>
+        <b>Dane personalne:</b><br>
+        <div id="tekst">
+        imie:<br>
+        nazwisko:<br>
+        nr telefonu:<br>
+        kod pocztowy:<br>
+        </div id="pola">
+        <input type="text" id="imie"><br>
+        <input type="text" id="nazwisko"><br>
+        <input type="text" id="numer"> format +48 (022) 000000 <br>
+        <input type="text" id="kod"> format 00-000 <br><br>
+        <button onclick="chleb()">Wyslij!</button>
+    </fieldset> 
+
+    <Script>
+        const imieRe = /^[A-ZŁŻ]{1}[a-zążźłóęśńć]{2,}$/;
+        const nazwiskoRe = /^[A-ZŁŻŹŚ]{1}[a-zążźłóęńść]{1,}(-[A-ZŁŻŹŚ])?[a-zążźłóęńść]{1,}$/;
+        const telefonRe = /^\+[0-9]{2}\([0-9]{3}\)[0-9]{6}$/;
+        const kodRe = /^[0-9]{2}-{1}[0-9]{3}$/;  
+        
+        const chleb =()=>{
+            const imie = imie.value;
+            const nazwisko = nazwisko.value;
+            const numer = numer.value;
+            const kod = kod.value;
+
+            if(imieRe.test(imie)){
+                alert("Nieprawidłowe imię!");
+            }
+            if(nazwiskoRe.test(nazwisko)){
+                alert("Nieprawidłowe nazwisko!");
+            }
+            if(telefonRe.test(numer)){
+                alert("Nieprawidłowy numer!");
+            }            
+        }       
+    </Script>
+</body>
+</html>

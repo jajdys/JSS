@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        textarea{margin-right: auto; margin-left: auto; margin-top: 70px; display: block;}
+    </style>
+</head>
+<body>
+    <textarea id="pole1" cols="70" rows="20" onkeyup="bluzgi()"></textarea>
+
+    <script>
+        const bluzgi=()=>{
+            let text = pole1.value;
+            const zakaz = ['Radek', 'c#', 'motyla noga', 'kurde'];
+            const wyrRay = RegExp(zakaz.join("|"), "igm");
+            
+            text = text.replace(wyrRay, "****");
+            pole1.value = text;
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 16</title>
+    <script defer>
+            const Krzyz2 = () => {
+            for(let i = 1; i <= 10; i++)
+            {
+                for(let j = 1; j <= 10; j++)
+                {
+                    if(j % 5 == 0 && j % 10 != 0)
+                    {
+                        wynik.innerHTML += '&emsp;' + '■' + '&emsp;';
+                    }
+                    else
+                        wynik.innerHTML += '&emsp;';
+
+                    if(i % 5 == 0 && i % 10 != 0)
+                    {
+                        wynik.innerHTML += '■';
+                    }
+                    else
+                        wynik.innerHTML += '&#8195;';
+                }
+             wynik.innerHTML += '<br>';
+            }
+        }
+        const Krzyz = () => {
+            let temp = "<table>";
+            temp += "<tr>";
+            temp += "<th></th>";
+            for(let i = 1; i < 10; i++)
+                {
+                temp += "<tr>";
+                for(let j = 1; j < 9; j++)
+                    {
+                    if(j % 5 == 0 && j % 10 != 0)
+                        temp += `<td>&emsp;■&emsp;</td>`;
+                    else
+                        temp += `<td>&nbsp;</td>`;
+
+                    if(i % 5 == 0 && i % 10 != 0)
+                            temp += `<td>■</td>`;
+                    else
+                            temp += `<td></td>`;
+                    }
+                    temp += "</tr>";
+                }
+            
+            temp += "</table>";
+            wynik.innerHTML = temp;
+        }
+    </script>
+</head>
+<body onload="Krzyz()">
+    <p id="wynik"></p>
+
+</body>
+</html>
