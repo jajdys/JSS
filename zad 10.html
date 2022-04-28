@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+    <table>
+        <tr>
+            <td><input type="number" id="Licznik1" class="Ulamek" size=1></td>
+            <td rowspan=3><span id="znak"></span></td>
+            <td><input type="number" id="Licznik2" class="Ulamek" size=1></td>
+            <td rowspan=3>=</td>
+            <td><input type="number" id="Licznik3" class="Ulamek" size=1 readonly></td>
+        </tr>
+
+        <tr>
+            <td><hr color="black"></hr></td>
+            <td><hr color="black"></hr></td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td><input type="number" id="mianownik1" class="Ulamek" size=1></td>
+            <td><input type="number" id="mianownik2" class="Ulamek" size=1></td>
+            <td><input type="number" id="mianownik3" class="Ulamek" size=1 readonly></td>
+        </tr>
+    </table>
+        <input type="button" value="+" id="dodawanie">
+        <input type="button" value="-" id="odejmowanie">
+        <input type="button" value="*" id="mnozenie">
+        <input type="button" value="/" id="dzielenie">
+        <input type="button" value="AC" id="reset">
+        <input type="button" value="=" id="wykonanie">
+</body>
+<script language="JavaScript">
+
+let wybor = 1
+wykonanie.addEventListener("click",function(){
+    let ulamek1 = new Ulamek()
+    let ulamek2 = new Ulamek()
+    let ulamek3 = new Ulamek()
+
+ulamek1.licznik = parseInt(Licznik1.value)
+ulamek1.mianownik = parseInt(mianownik1.value)
+ulamek2.licznik = parseInt(Licznik2.value)
+ulamek2.mianownik = parseInt(mianownik2.value)
+
+if(wybor==1){
+    ulamek3.dodaj(ulamek1,ulamek2)}
+else if(wybor==2){
+    ulamek3.odejmij(ulamek1,ulamek2)}
+else if(wybor==3){
+    ulamek3.pomnoz(ulamek1,ulamek2)}
+else if(wybor==4){
+    ulamek3.podziel(ulamek1,ulamek2)}
+
+Licznik3.value=ulamek3.licznik
+mianownik3.value=ulamek3.mianownik
+console.log(ulamek1.licznik)
+console.log(ulamek1.mianownik)})
+
+    dodawanie.addEventListener("click",function(){
+    wybor=1
+    znak.innerHTML="+"
+    })
+    odejmowanie.addEventListener("click",function(){
+    wybor=2
+    znak.innerHTML="-"
+    })
+    mnozenie.addEventListener("click",function(){
+    wybor=3
+    znak.innerHTML="*"
+    })
+    dzielenie.addEventListener("click",function(){
+    wybor=4
+    znak.innerHTML="/"
+    })
+
+    reset.addEventListener("click",function(){
+    Licznik1.value=""
+    Licznik2.value=""
+    mianownik1.value=""
+    mianownik2.value=""
+})
+
+class Ulamek{
+#L
+#M
+ get mianownik(){
+  return this.#M
+ }
+ set mianownik(value){
+  if(value==0){
+      alert("mianownik nie istnieje!")}
+  else{
+      this.#M=value}
+ }
+ 
+ get licznik(){
+  return this.#L
+ }
+
+ set licznik(value){
+  this.#L=value
+ }
+ NWD(x,y){
+  if(y==0){
+    return x
+  }
+  else{
+      return this.NWD(y,x%y)}
+ }
+  /*
+  NWD(x,y){
+  if(y==0)
+  {
+    return x
+  }
+  else
+  {return this.NWD(y,x%y)}
+ }
+ */
+ skroc(){
+  let skrocic=this.NWD(this.mianownik,this.mianownik)
+  this.licznik=this.licznik/skrocic
+  this.mianownik=this.mianownik/skrocic
+ }
+ NWW(x,y){
+  return x/this.NWD(x,y)*y
+ }
+ dodaj(ulamek1,ulamek2){
+  this.mianownik=this.NWW(ulamek1.mianownik,ulamek2.mianownik)
+  this.licznik=this.mianownik/ulamek1.mianownik*ulamek1.licznik+this.mianownik/ulamek2.mianownik*ulamek2.licznik
+  this.skroc()
+ }
+ odejmij(ulamek1,ulamek2){
+  this.mianownik=this.NWW(ulamek1.mianownik,ulamek2.mianownik)
+  this.licznik=this.mianownik/ulamek1.mianownik*ulamek1.licznik-this.mianownik/ulamek2.mianownik*ulamek2.licznik
+  this.skroc()
+ }
+ pomnoz(ulamek1,ulamek2){
+  this.licznik=ulamek1.licznik*ulamek2.licznik
+  this.mianownik=ulamek1.mianownik*ulamek2.mianownik
+  this.skroc()
+ }
+ podziel(ulamek1,ulamek2){
+  this.licznik=ulamek1.licznik*ulamek2.mianownik
+  this.mianownik=ulamek1.mianownik*ulamek2.licznik
+  this.skroc()
+ }
+}
+</script>
+</html>

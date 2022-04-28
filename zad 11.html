@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #formularz{
+            width: 210px;
+            height: 250px;
+            border: 1px solid black;
+            margin: auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+        #wynik{
+            width: 210px;
+            height: 250px;
+            margin: auto;
+            margin-top: 50px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        const cena_paliwa = 7.80;
+        function Oferta(marka, model, cena, spalanie, rocznik){
+            this.marka = marka;
+            this.model = model;
+            this.cena = cena;
+            this.spalanie = spalanie;
+            this.rocznik = rocznik;
+
+            this.koszt =()=>{
+                return (this.spalanie / 100 * cena_paliwa).toFixed(5);
+            }
+            this.wiek =()=>{
+                data = new Date().getFullYear() - this.rocznik;
+                if(data == 1){
+                    return "1 rok";
+                }
+                else if(data == 2 || data == 3 || data == 4){
+                    return data + " lata";
+                }
+                else{
+                    return data + " lat";
+                }  
+            }
+        };
+        const OferteUtw =()=>{   
+            marka = marka.value;
+            model = model.value;
+            cena = parseFloat(cena.value);
+            spalanie = parseFloat(spalanie.value);
+            rocznik = parseInt(rocznik.value);
+
+            if(marka == "" || model == "" || cena == "" || spalanie == "" || rocznik == ""){
+                alert("Wypełnij wszystkie pola");
+            }
+            else if(cena < 0 || spalanie < 0 || rocznik < 1500 || rocznik > 2200){
+                alert("Podaj poprawne dane");
+            }
+            else{
+                let samochod = new Oferta(marka, model, cena, spalanie, rocznik);
+                let wynik = document.getElementById("wynik");
+                wynik.innerHTML = "Marka: " + samochod.marka + "<br>";
+                wynik.innerHTML += "Model: " + samochod.model + "<br>";
+                wynik.innerHTML += "Cena: " + samochod.cena + "<br>";
+                wynik.innerHTML += "Spalanie: " + samochod.spalanie + "<br>";
+                wynik.innerHTML += "Rocznik: " + samochod.rocznik + "<br>";
+                wynik.innerHTML += "Koszt: " + samochod.koszt() + "<br>";
+                wynik.innerHTML += "Wiek: " + samochod.wiek() + "<br>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="formularz">
+        <legend>
+        Marka: <br><input type="text" id="marka"> <br>
+        Model: <br><input type="text" id="model"> <br>
+        Cena: <br><input type="number" id="cena"> <br>
+        Spalanie:<br><input type="number" id="spalanie"> <br>
+        Rocznik: <br><input type="number" id="rocznik"> <br>
+        <input type="button" onclick="OferteUtw()" value="Utwórz ofertę"> <br>
+    </legend>
+    </div>
+    <div id="wynik"></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <title>Document</title>
+</head>
+<fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 20px;">
+    <legend>Wybierz</legend>
+
+    <input type="radio" id="rb1" name="rb">Prostokąt<br>
+    <input type="radio" id="rb2" name="rb">Prostopadłościan<br>
+    <input type="radio" id="rb3" name="rb">Ostrosłup<br>
+    
+
+    <p id="wynik"></p>
+    <p id="wynik1"></p>
+    <p id="wynik2"></p>
+
+</fieldset>
+<body>
+    <script>
+        class prostokat{
+            #a;
+            #b;
+
+            //własność boku a i boku b
+
+            obliczPole(){
+                return this.BokA * this.BokB;
+            }
+        }
+    </script>
+</body>
+</html>

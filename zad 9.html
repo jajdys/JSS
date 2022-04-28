@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+    <style>
+        legend{text-align: center;};
+        .center{text-align: center; font-size: 200px;}
+        .box{text-align: right;}
+        input{margin-left: 10px}
+    </style>
+<body>
+    <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+        <legend>Oblicz</legend>
+        <div class="center">
+            <input type="radio" id="TxtNat" name="RB">Natężenie<br><br>
+            <input type="radio" id="TxtNap" name="RB">Napięcie<br><br>
+            <input type="radio" id="TxtRez" name="RB">Rezystancja<br><br>   
+        </div> 
+    </fieldset>
+    
+        <fieldset style="text-align:  center; width: 300px; margin-left: auto; margin-right: auto; margin-top: 40px;">
+           <div class="box">
+            Napięcie    <input type="number" ><br><br>
+            Natężenie   <input type="number" ><br><br>
+            Rezystancja <input type="number" ><br><br>
+           </div>
+            
+            <button onclick="oblicz()" id="guzik">oblicz</button>
+        </fieldset>
+    <p id="wynik"></p>
+    <script>
+        class Ohm{
+    #U;
+    #I;
+    #R;
+    get Napiecie(){
+        return this.#U;
+    }
+    set Napiecie(value){
+        this.#U = value;
+    }
+    get Natezenie(){
+        return this.#I;
+    }
+    set Natezenie(value){
+        this.#I = value;
+    }
+    get Rezystancje(){
+        return this.#R;
+    }
+    set Rezystancje(value){
+        this.#R = value;
+    }
+    obliczR(U, I){
+        return this.#U / this.#I;
+    }
+    obliczU(R, I){
+        return this.#R * this.#I;
+    }
+    obliczI(U, R){
+        return this.#U / this.#R;
+    }
+}
+const Oblicz =()=>{
+        const R = rezWpisz.value;
+        const U = napWpisz.value;
+        const I = natWpisz.value;
+
+        const wyliczZmienna = new Ohm(R, U, I);
+
+        wyliczZmienna.Napiecie = U;
+        wyliczZmienna.Natezenie = I;
+        wyliczZmienna.Rezystancje = R; 
+
+        if(nat.checked){
+            wynik.innerHTML = "Natężenie:" + wyliczZmienna.obliczI(U, R);
+        } 
+        else if(nap.checked) {
+            wynik.innerHTML = "Napiecie:" + wyliczZmienna.obliczU(R, I);
+        }
+        else if(rez.checked){
+            wynik.innerHTML = "Rezystancja:" + wyliczZmienna.obliczR(U, I);
+        }     
+    }
+nat.addEventListener("change", function(){
+    natWpisz.disabled = false;
+    napWpisz.disabled = true;
+    rezWpisz.disabled = true;
+});
+nap.addEventListener("change", function(){
+    napWpisz.disabled = false;
+    natWpisz.disabled = true;
+    rezWpisz.disabled = true;
+});
+rez.addEventListener("change", function(){
+    rezWpisz.disabled = false;
+    natWpisz.disabled = true;
+    napWpisz.disabled = true;
+});
+</script>
+</body>
+</html>

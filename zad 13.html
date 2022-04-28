@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>samochod</title>
+
+    <style>
+        #glowne{
+            margin: auto;
+            text-align: center;
+            width: 57%;
+        }
+        #pierw, #dru, #trze{
+            width: 277px;
+            height: 80px;
+            display: inline-block;
+        }
+        #przy{
+            margin-left: 20.6%;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <fieldset id="glowne">
+        <legend>Wybierz wariant zakupu</legend>
+            <input type="radio" id="jeden" name="imie">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Cena auta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="dwa" name="imie">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Cena auta z dodatkami&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" id="trzy" name="imie">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Cena auta z dodatkami i ubezpieczenia
+    </fieldset>
+
+    <center>
+
+    <fieldset id="pierw">
+        <legend>Nowe auto</legend>
+        Model Auta&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="mod" size="12"> <br>
+        Cena(EURO) <input type="text" id="cen"size="12"><br>
+        Kurs Euro&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="kur"size="12"><br>
+    </fieldset>
+    <fieldset id="dru">
+        <legend>Dodatki</legend>
+        Alarm&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="ala" size="12"> <br>
+        Klimatyzacja <input type="text" id="kli"size="12"><br>
+        radio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" id="rad"size="12"><br>
+    </fieldset>
+    <fieldset id="trze">
+        <legend>Ubezpieczenie</legend>
+
+        <input type="checkbox"> Pierwsze  Auto <br>
+        Ilosc Lat <br>
+        <input type="number">
+        
+    </fieldset>
+</center>
+
+    <input type="button" value="Oblicz" onclick="oblicz()" id="przy">
+    <p id="wynik"></p>
+    <p id="c"></p>
+
+
+    <script>
+
+        class NoweAuto{
+
+            #modelAuta;
+            #cenaEuro;
+            #kursEuro;
+
+            set model(value){
+                this.#modelAuta = value;
+            }
+            get model(){
+                return this.#modelAuta;
+            }
+
+            set cena(value){
+                this.#cenaEuro = value;
+            }
+            get cena(){
+                return this.#cenaEuro;
+            }
+
+            set kurs(value){
+                this.#kursEuro = value;
+            }
+            get kurs(){
+                return this.#kursEuro;
+            }
+
+            constructor(cena, kurs){
+                this.#cenaEuro = cena;
+                this.#kursEuro = kurs;
+            }
+                
+            obliczCene(){
+                return this.cena * this.kurs;
+            }
+
+            }
+
+            class AutoZDodatkami extends NoweAuto{
+                #Alarm
+                #Klimatyzacja
+                #Radio
+
+                constructor(cena,kurs,alarm,klima,radio)
+                {
+                    super(cena,kurs)//wywołanie konstruktora klasy bazowej
+                    this.#Alarm = alarm;
+                    this.#Klimatyzacja = klima;
+                    this.#Radio = radio;
+                }
+                obliczCene(){
+                    return super.obliczCene() + this.alarm + this.klima + this.radio;
+                }
+            }
+
+            const oblicz = () => {
+                if(jeden.checked){
+                    let model = mod.value;
+                    let cena = parseFloat(cen.value);
+                    let kurs = parseFloat(kur.value);
+                    let Auto = new NoweAuto(cena, kurs);
+                    wynik.innerHTML = model + " cena auta: ";
+                    c.innerHTML = Auto.obliczCene();
+                } else if(dwa.checked){
+                    let model = mod.value;
+                    let cena = parseFloat(cen.value);
+                    let kurs = parseFloat(kur.value);
+                    let alarm = parseFloat(ala.value);
+                    let klima = parseFloat(kli.value);
+                    let radio = parseFloat(rad.value);
+                    let Auto = new AutoZDodatkami(cena, kurs, alarm, klima, radio);
+                    wynik.innerHTML = model + " cena auta: ";
+                    c.innerHTML = Auto.obliczCene();
+                }
+            }
+        
+
+    </script>
+    
+</body>
+</html>
